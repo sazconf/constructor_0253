@@ -91,3 +91,32 @@ public:
         cout << lihatGajiStaff(s) << endl;
     }
 };
+
+int main() {
+    // Create a Mahasiswa
+    Mahasiswa m1("Alice", 12345);
+
+    // Create a Dosen
+    Dosen d1("Dr. Budi", "D123", "Lektor", 8500000);
+
+    // Create a Staff
+    Staff s1("Pak Joko", 2022, 4500000);
+
+    // Create Universitas instance
+    Universitas u;
+
+    // Dosen gives grade to Mahasiswa
+    d1.beriNilai(&m1, 88.5);
+
+    // Display Mahasiswa info
+    m1.tampilkan();
+
+    // Staff updates the Dosen's pangkat
+    s1.ubahPangkat(&d1, "Guru Besar");
+
+    // Universitas accesses gaji data from both Dosen and Staff
+    u.tampilkanGajiDosen(&d1);
+    u.tampilkanGajiStaff(&s1);
+
+    return 0;
+}
