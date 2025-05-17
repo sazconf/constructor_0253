@@ -47,3 +47,47 @@ public:
     // Give Dosen access to modify nilai
     friend void Dosen::beriNilai(Mahasiswa* m, float nilai);
 };
+
+// Function defined outside to access private gaji of Dosen
+string lihatGajiDosen(Dosen* d) {
+    return "Gaji Dosen: " + to_string(d->gaji);
+}
+
+// ===== Class Staff =====
+class Staff {
+private:
+    string nama;
+    int idStaff;
+    float gaji;
+
+public:
+    // Constructor
+    Staff(string n, int id, float g) : nama(n), idStaff(id), gaji(g) {}
+
+    // Staff can change Dosen's pangkat using pointer
+    void ubahPangkat(Dosen* d, string pangkatBaru) {
+        d->pangkat = pangkatBaru;
+    }
+
+    // Allow Universitas to see gaji of Staff via this friend function
+    friend string lihatGajiStaff(Staff* s);
+};
+
+// Function to access Staff's gaji
+string lihatGajiStaff(Staff* s) {
+    return "Gaji Staff: " + to_string(s->gaji);
+}
+
+// ===== Class Universitas =====
+class Universitas {
+public:
+    // Universitas can view gaji of Dosen via friend function
+    void tampilkanGajiDosen(Dosen* d) {
+        cout << lihatGajiDosen(d) << endl;
+    }
+
+    // Universitas can view gaji of Staff via friend function
+    void tampilkanGajiStaff(Staff* s) {
+        cout << lihatGajiStaff(s) << endl;
+    }
+};
