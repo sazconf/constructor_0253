@@ -27,3 +27,23 @@ public:
     // Allow Staff to access and change private attributes of Dosen
     friend class Staff;
 };
+
+// ===== Class Mahasiswa =====
+class Mahasiswa {
+private:
+    string nama;
+    int nim;
+    float nilai; // This is private and can only be modified by Dosen
+
+public:
+    // Constructor
+    Mahasiswa(string n, int i) : nama(n), nim(i), nilai(0.0f) {}
+
+    // Display Mahasiswa data
+    void tampilkan() {
+        cout << "Mahasiswa: " << nama << " (NIM: " << nim << ") - Nilai: " << nilai << endl;
+    }
+
+    // Give Dosen access to modify nilai
+    friend void Dosen::beriNilai(Mahasiswa* m, float nilai);
+};
