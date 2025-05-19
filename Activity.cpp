@@ -3,7 +3,7 @@ using namespace std;
 
 //membuat class mahasiswa
 
-class Mahasiswa {
+class Student {
     private:
         static int studentTotal;
     public:
@@ -11,6 +11,51 @@ class Mahasiswa {
         string status;
         int age;
 
+        Student(string pName, int pAge){
+            name= pName;
+            age= pAge;
+            status = "New Student";
+            ++studentTotal;
+            cout <<name<< "Created " << " Status " << status << endl;
+            cout<< endl;
+
+        }
+
+        ~Student(){
+            cout<< name << " Destroyed " << endl;
+            --studentTotal;
+        }
+
+        static int getStudentTotal(){
+            return studentTotal;
+        }
+
 };
 
+int Student::studentTotal = 0;
 
+int main (){
+
+    cout<<"Student Total is "<< 
+    Student::getStudentTotal()<<endl;
+
+    Student st1("Maman", 40);
+    Student st2("Agus", 34);
+
+    cout<<"Student Total is "<< 
+    Student::getStudentTotal()<<endl;
+    
+
+    {
+        Student st3("Budi", 19);
+        Student st4("Caca", 21);
+
+        cout<<"Student Total is "<< 
+        Student::getStudentTotal()<<endl;
+    }
+
+    cout<<"Student Total is "<< 
+    Student::getStudentTotal()<<endl;
+    
+    
+}
